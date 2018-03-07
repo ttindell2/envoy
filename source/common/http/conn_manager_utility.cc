@@ -205,7 +205,7 @@ void ConnectionManagerUtility::mutateXfccRequestHeader(Http::HeaderMap& request_
       config.forwardClientCert() == Http::ForwardClientCertType::SanitizeSet) {
     const std::string uri_san_local_cert = connection.ssl()->uriSanLocalCertificate();
     if (!uri_san_local_cert.empty()) {
-      client_cert_details.push_back("By=" + uri_san_local_cert);
+      //client_cert_details.push_back("By=" + uri_san_local_cert);
     }
     const std::string cert_digest = connection.ssl()->sha256PeerCertificateDigest();
     if (!cert_digest.empty()) {
@@ -221,13 +221,13 @@ void ConnectionManagerUtility::mutateXfccRequestHeader(Http::HeaderMap& request_
       case Http::ClientCertDetailsType::SAN:
         // Currently, we only support a single SAN field with URI type.
         // The "SAN" key still exists even if the SAN is empty.
-        client_cert_details.push_back("SAN=" + connection.ssl()->uriSanPeerCertificate());
+        //client_cert_details.push_back("SAN=" + connection.ssl()->uriSanPeerCertificate());
         break;
       case Http::ClientCertDetailsType::Cert:
-        const std::string peer_cert = connection.ssl()->urlEncodedPemEncodedPeerCertificate();
-        if (!peer_cert.empty()) {
-          client_cert_details.push_back("Cert=\"" + peer_cert + "\"");
-        }
+    //    const std::string peer_cert = connection.ssl()->urlEncodedPemEncodedPeerCertificate();
+      //  if (!peer_cert.empty()) {
+        //  client_cert_details.push_back("Cert=\"" + peer_cert + "\"");
+      //  }
         break;
       }
     }
